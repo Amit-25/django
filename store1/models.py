@@ -48,7 +48,7 @@ class Customer(models.Model):
         return self.first_name 
 
     class Meta:
-        db_table = 'store_customer'
+        db_table = 'store1_customer'
         indexes = [
             models.Index(fields=['last_name', 'first_name'])
         ]
