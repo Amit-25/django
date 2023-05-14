@@ -45,14 +45,15 @@ class Customer(models.Model):
     membership = models.CharField(max_length=1, choices=MEMBERSHIP_CHOICES, default='G')
     
     def __str__(self) -> str:
-        return self.first_name 
+        return f'{self.first_name} {self.last_name}'
 
     class Meta:
         db_table = 'store1_customer'
+        #ordering = ['first_name ', 'last_name']
         indexes = [
             models.Index(fields=['last_name', 'first_name'])
         ]
-        # ordering = ['first_name ']
+        
 
 class Order(models.Model):
     PAYMENT_STATUS = [
