@@ -21,4 +21,14 @@ def product_list(request):
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
     serializer = ProductSerializer(product)
-    return Response(serializer.data)
+    if serializer is None:
+        errorCode, errorMessage = 0, "No Record Found."
+    else:
+        errorCode, errorMessage = 1, "Data Found"
+    context = {
+        "data": serializer.data,
+        "error_code": errorCode,
+        "error_message": errorMessage
+    }
+    print(type(serializer.data))
+    return Response(context)
